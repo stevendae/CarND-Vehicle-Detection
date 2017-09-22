@@ -18,7 +18,7 @@ The goals / steps of this project are the following:
 [image1]: ./examples/car_not_car.png
 [image2]: ./examples/Features.PNG
 [image3]: ./examples/BoundingBox.png
-[image4]: ./examples/sliding_window.jpg
+[image4]: ./examples/window.png
 [image5]: ./examples/bboxes_and_heat.png
 [image6]: ./examples/labels_map.png
 [image7]: ./examples/output_bboxes.png
