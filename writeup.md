@@ -99,11 +99,11 @@ I implemented a sliding window search in the 16th code cell of the IPython noteb
 
 #### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
-Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images:
+Ultimately I searched on four scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images:
 
 ![alt text][image4]
 
-I included the Udacity image data set as that provided more data so that recognition of the white vehicles was significantly more robust. I found that the biggest 
+I included the Udacity image data set as that provided more data so that recognition of the white vehicles was significantly more robust. 
 ---
 
 ### Video Implementation
@@ -143,4 +143,4 @@ The approach I took was the general procedure that was illustrated in the Udacit
 
 My strategy for success in this project was to ensure that I satisfied a minimal requirement at each stage. The first stage was to see if my classifier was predicting the vehicles at many scales. Once this was established I made a collections tensor so that I can implement a high threshold on the heat map and 'track' actual positive detections. I then collected heat map values of the last five frames and then averaged them to add another confidence filter. This method was derived as a result of finding ways to truly eliminate unwanted false positives in the video clip which happened to be the pervasive issue that kept arising.
 
-My pipeline will likely fail 
+My pipeline may fail during different lighting/weather/daytime conditions based on the fact that two thirds of the feature is based on the color and pixel information of the training images. Therefore the SVM model will have to be tested on different video styles.
