@@ -46,7 +46,7 @@ I started by reading in all the `vehicle` and `non-vehicle` images.  Here is an 
 
 I then explored different color spaces and different `skimage.hog()` parameters (`orientations`, `pixels_per_cell`, and `cells_per_block`).  I grabbed random images from each of the two classes and displayed them to get a feel for what the `skimage.hog()` output looks like.
 
-Here is an example using the `YUV` color space and HOG parameters of `orientations=8`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`:
+Here is an example of all the features that were used for vehicle detection. They include a compressed 16x16 spatial image, a color histogram using the `YUV` color space and HOG parameters of `orientations=9`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`:
 
 
 ![alt text][image2]
@@ -72,7 +72,7 @@ Pixels Per Cell: (8,8)
 Cells Per Block: (2,2)
 Hog Channel(s): ALL
 
-I then further tweaked my parameters to (2nd Submission):
+and finally settled on (2nd Submission):
 
 Colourspace: YUV
 Orientation: 9
@@ -82,7 +82,7 @@ Hog Channel(s): ALL
 Spatial Size: (16,16)
 Hist Bins: 16
 
-The changes to colourspace were made based on the anecdotal evidence floating in the Udacity forums around the notion that YUV had improved accuracies in the test sets. This was further validated via expert support in the following [link](https://stackoverflow.com/questions/43190701/why-convert-from-rgb-to-ycrcb-color-space). In summary the YCrCb space is characterized by the three components whereby the Y component is the luma component and Cr and Cb are the red-difference and blue-difference chroma components. This means that YCrCb represents color as brightness and two color difference signals. The representation of YCbCr separates the luminance and chrominance, so the computing system can encode the image in a way that less bits are allocated for chrominance. This is done through color subsampling, which simply encodes chrominance components with lower resolution. 
+The changes to colourspace were made based on the anecdotal evidence floating in the Udacity forums around the notion that YUV had improved accuracies in the test sets. The YUV space is characterized by the three components whereby the Y component is the luminance component (the brightness) and U and V are the chrominance (color) components. This means that YUV represents color as brightness and two color difference signals. The representation of YUV separates the luminance and chrominance, so the computing system can encode the image in a way that less bits are allocated for chrominance. This is done through color subsampling, which simply encodes chrominance components with lower resolution. 
 
 The changes to the number of HOG channels was on the basis that when more information is provided to represent a class, the more distributed the data sets will become and hence a better generalization as a result. 
 
@@ -154,3 +154,5 @@ The approach I took was the general procedure that was illustrated in the Udacit
 My strategy for success in this project was to ensure that I satisfied a minimal requirement at each stage. The first stage was to see if my classifier was predicting the vehicles at many scales. Once this was established I made a collections tensor so that I can implement a high threshold on the heat map and 'track' actual positive detections. I then collected heat map values of the last five frames and then averaged them to add another confidence filter. This method was derived as a result of finding ways to truly eliminate unwanted false positives in the video clip which happened to be the pervasive issue that kept arising.
 
 My pipeline may fail during different lighting/weather/daytime conditions based on the fact that two thirds of the feature is based on the color and pixel information of the training images. Therefore the SVM model will have to be tested on different video styles.
+
+There is also some concern with the rate of predictions of using an SVM to perform vehicle detection. I would need to further optimize the HOG and SVM for additional real-time performance. 
