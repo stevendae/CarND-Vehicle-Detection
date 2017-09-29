@@ -46,7 +46,7 @@ I started by reading in all the `vehicle` and `non-vehicle` images.  Here is an 
 
 I then explored different color spaces and different `skimage.hog()` parameters (`orientations`, `pixels_per_cell`, and `cells_per_block`).  I grabbed random images from each of the two classes and displayed them to get a feel for what the `skimage.hog()` output looks like.
 
-Here is an example using the `YCrCb` color space and HOG parameters of `orientations=8`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`:
+Here is an example using the `YUV` color space and HOG parameters of `orientations=8`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`:
 
 
 ![alt text][image2]
@@ -64,7 +64,7 @@ Pixels Per Cell: 8,8)
 Cells Per Block: (2,2)
 Hog Channel: 2
 
-I then further tweaked my parameters to:
+I then further tweaked my parameters to (1st Submission):
 
 Colourspace: YCrCb
 Orientation: 9
@@ -72,7 +72,17 @@ Pixels Per Cell: (8,8)
 Cells Per Block: (2,2)
 Hog Channel(s): ALL
 
-The changes to colourspace were made based on the anecdotal evidence floating in the Udacity forums around the notion that YCrCb had improved accuracies in the test sets. This was further validated via expert support in the following [link](https://stackoverflow.com/questions/43190701/why-convert-from-rgb-to-ycrcb-color-space). In summary the YCrCb space is characterized by the three components whereby the Y component is the luma component and Cr and Cb are the red-difference and blue-difference chroma components. This means that YCrCb represents color as brightness and two color difference signals. The representation of YCbCr separates the luminance and chrominance, so the computing system can encode the image in a way that less bits are allocated for chrominance. This is done through color subsampling, which simply encodes chrominance components with lower resolution. 
+I then further tweaked my parameters to (2nd Submission):
+
+Colourspace: YUV
+Orientation: 9
+Pixels Per Cell: (8,8)
+Cells Per Block: (2,2)
+Hog Channel(s): ALL
+Spatial Size: (16,16)
+Hist Bins: 16
+
+The changes to colourspace were made based on the anecdotal evidence floating in the Udacity forums around the notion that YUV had improved accuracies in the test sets. This was further validated via expert support in the following [link](https://stackoverflow.com/questions/43190701/why-convert-from-rgb-to-ycrcb-color-space). In summary the YCrCb space is characterized by the three components whereby the Y component is the luma component and Cr and Cb are the red-difference and blue-difference chroma components. This means that YCrCb represents color as brightness and two color difference signals. The representation of YCbCr separates the luminance and chrominance, so the computing system can encode the image in a way that less bits are allocated for chrominance. This is done through color subsampling, which simply encodes chrominance components with lower resolution. 
 
 The changes to the number of HOG channels was on the basis that when more information is provided to represent a class, the more distributed the data sets will become and hence a better generalization as a result. 
 
